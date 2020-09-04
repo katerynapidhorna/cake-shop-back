@@ -14,10 +14,13 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER
       },
-      imageUrl: {
+      imgUrl: {
         type: Sequelize.TEXT
       },
       ingredients: {
+        type: Sequelize.STRING
+      },
+      category: {
         type: Sequelize.STRING
       },
       createdAt: {
