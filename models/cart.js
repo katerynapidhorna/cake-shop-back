@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         through: "product_cart",
         foreignKey: "cartId",
       });
+      cart.hasMany(models.order, {
+        foreignKey: "cartId"
+      } )
     }
   }
   cart.init(
