@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      order.belongsTo(models.cart);
-      order.hasOne(models.payment)
+      order.hasOne(models.cart);
+      order.hasOne(models.payment);
     }
   }
   order.init(
