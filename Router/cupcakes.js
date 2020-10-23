@@ -16,7 +16,7 @@ router.get("/cupcakes", async (req, res) => {
       res.status(404).send("cupcake not found");
     } else {
       res.send(cupcakes);
-      console.log('cakes', cupcakes)
+      console.log("cakes", cupcakes);
     }
   } catch (e) {
     console.log(e);
@@ -24,16 +24,39 @@ router.get("/cupcakes", async (req, res) => {
 });
 router.get("/cupcakes/:id", async (req, res) => {
   try {
-    const id = req.params.id
+    const id = req.params.id;
     const cupcake = await Products.findByPk(id);
     if (!cupcake) {
       res.status(404).send("cupcake not found");
     } else {
       res.send(cupcake);
-      console.log('cake', cupcake)
+      console.log("cake", cupcake);
     }
   } catch (e) {
     console.log(e);
   }
 });
-module.exports = router
+
+router.post("/cupcakes", async (req, res) => {
+  const { category, imgUrl, ingredients, name, price } = req.params;
+  console.log("here!!!!!!!!!!!!!!!");
+  try {
+    if (!category || !imgUrl || !ingredients || !name || !price) {
+      res.send(
+        "Provide full info: category name/img url/ingredients/name/price"
+      );
+      return;
+    }
+    const newProduct = await Products.create({
+      category,
+      imgUrl,
+      ingredients,
+      name,
+      price,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+module.exports = router;
